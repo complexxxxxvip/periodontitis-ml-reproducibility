@@ -1,0 +1,12 @@
+﻿Model,Engine,Hyperparameter,Scale,Search_range_in_code,Search_method,Initial_points,Bayesian_iterations,Selection_rule,Final_selected_value,Notes
+SVM RBF,kernlab,cost,log2-transformed dials scale,"c(-1, 7)",Bayesian optimization,30.0,70.0,ROC AUC; select_by_pct_loss(limit=0.1),4.1,Final full-development refit search space.
+SVM RBF,kernlab,rbf_sigma,log10-transformed dials scale,"c(-4.7, -2.7)",Bayesian optimization,30.0,70.0,ROC AUC; select_by_pct_loss(limit=0.1),0.00145,Final full-development refit search space.
+XGBoost,xgboost,trees,natural scale,200 to 1500,Bayesian optimization,50.0,100.0,ROC AUC; select_by_pct_loss(limit=0.1),635.0,
+XGBoost,xgboost,tree_depth,natural scale,2 to 6,Bayesian optimization,50.0,100.0,ROC AUC; select_by_pct_loss(limit=0.1),4.0,
+XGBoost,xgboost,learn_rate,log10-transformed dials scale,"c(-3, -1)",Bayesian optimization,50.0,100.0,ROC AUC; select_by_pct_loss(limit=0.1),0.0149,
+XGBoost,xgboost,min_n,natural scale,1 to 50,Bayesian optimization,50.0,100.0,ROC AUC; select_by_pct_loss(limit=0.1),31.0,
+XGBoost,xgboost,loss_reduction,log10-transformed dials scale,"c(-4, 0.7)",Bayesian optimization,50.0,100.0,ROC AUC; select_by_pct_loss(limit=0.1),0.00435,
+XGBoost,xgboost,sample_size,proportion,0.4 to 0.9,Bayesian optimization,50.0,100.0,ROC AUC; select_by_pct_loss(limit=0.1),0.513,
+XGBoost,xgboost,mtry,proportion (counts=FALSE),0.4 to 1.0,Bayesian optimization,50.0,100.0,ROC AUC; select_by_pct_loss(limit=0.1),0.774,
+Elastic Net meta-learner,glmnet,penalty,log10-transformed dials scale,"c(-4, 1), 30 levels",Regular grid,,,Repeated 5-fold CV x3; selected by multinomial/log loss,0.0117,Grid combined with 15 mixture levels.
+Elastic Net meta-learner,glmnet,mixture,natural scale,"0 to 0.6, 15 levels",Regular grid,,,Repeated 5-fold CV x3; selected by multinomial/log loss,0.0429,Grid combined with 30 penalty levels.

@@ -1,0 +1,64 @@
+FINAL MODEL SPECIFICATION
+=========================
+
+Development cohort size: 1321
+
+Final model predictors:
+Sex, Smoke, Age, AG_ratio, eGFR, Fbg, PAR, TC, GGT, ALP, NPR, INR, HB, APTT, LDH, TyG
+
+Architecture:
+- Base learner 1: radial-basis-function support vector machine (SVM RBF)
+- Base learner 2: XGBoost
+- Meta-learner: Elastic Net logistic regression
+- Calibration: Platt scaling
+- Class-imbalance handling: SMOTE followed by Tomek-link removal in training folds only
+
+Multiple imputation:
+- Method: predictive mean matching (PMM)
+- Number of imputations: 5
+- Maximum iterations: 50
+- eps: 1e-08
+- Outcome excluded from imputation
+- Patient-level probabilities pooled by arithmetic mean across imputation-specific models
+
+MICE source variables:
+Sex, Smoke, Age, TP, ALB, CR, Fbg, PLT, TC, GGT, ALP, NE_C, PT, HB, APTT, LDH, GLU, TG
+
+Derived predictors:
+AG_ratio, eGFR, PAR, NPR, INR, TyG
+
+Derivation rules:
+- AG_ratio = ALB / (TP - ALB)
+- PAR = PLT / ALB
+- NPR = NE_C / PLT
+- INR = (PT / 13.1)^1.31
+- TyG = log(1594.26 * TG * GLU / 2)
+- eGFR uses CR/88.4 to convert creatinine to mg/dL; Sex=0 is female and Sex=1 is male.
+  Female: kappa=0.7, alpha=-0.329, coefficient=1.018
+  Male: kappa=0.9, alpha=-0.411, coefficient=1.0
+  Race coefficient used in the analysis: 1.0
+
+Final selected hyperparameters:
+SVM RBF
+- cost: 4.10
+- rbf_sigma: 0.00145
+
+XGBoost
+- mtry: 0.774
+- trees: 635
+- min_n: 31
+- tree_depth: 4
+- learn_rate: 0.0149
+- loss_reduction: 0.00435
+- sample_size: 0.513
+
+Elastic Net meta-learner
+- penalty: 0.0117
+- mixture: 0.0429
+
+Frozen classification threshold:
+0.6519343132 (reported as 0.652 in the manuscript)
+
+Privacy note:
+Fitted model objects are not included in the public repository because serialized model objects
+may retain patient-level feature information from the development cohort.

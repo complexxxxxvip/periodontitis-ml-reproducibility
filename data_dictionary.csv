@@ -1,0 +1,26 @@
+﻿Variable,Full_name,Role,Data_type,Unit,Coding,Raw_or_derived,Formula,Direct_user_input_for_prediction,Notes
+PDstage,Periodontitis severity group,Outcome,categorical,-,Stage0 = Stage I-II; Stage1 = Stage III-IV,raw,-,No,Required for model development/evaluation; not required for prediction.
+Sex,Sex,Predictor / MICE source,binary,-,0 = female; 1 = male,raw,-,Yes,Required source variable and final model predictor.
+Smoke,Smoking status,Predictor / MICE source,binary,-,0 = non-smoker; 1 = smoker,raw,-,Yes,Required source variable and final model predictor.
+Age,Age,Predictor / MICE source,numeric,years,-,raw,-,Yes,Required source variable and final model predictor.
+TP,Total protein,MICE source,numeric,g/L,-,raw,-,No,Used to derive A/G.
+ALB,Albumin,MICE source,numeric,g/L,-,raw,-,No,Used to derive A/G and PAR.
+CR,Serum creatinine,MICE source,numeric,umol/L,-,raw,-,No,Used to derive eGFR; converted to mg/dL by CR/88.4.
+Fbg,Fibrinogen,Predictor / MICE source,numeric,g/L,-,raw,-,Yes,Final model predictor.
+PLT,Platelet count,MICE source,numeric,x10^9/L,-,raw,-,No,Used to derive PAR and NPR.
+TC,Total cholesterol,Predictor / MICE source,numeric,mmol/L,-,raw,-,Yes,Final model predictor.
+GGT,Gamma-glutamyl transferase,Predictor / MICE source,numeric,U/L,-,raw,-,Yes,Displayed as gamma-GT in figures/manuscript.
+ALP,Alkaline phosphatase,Predictor / MICE source,numeric,U/L,-,raw,-,Yes,Final model predictor.
+NE_C,Neutrophil count,MICE source,numeric,x10^9/L,-,raw,-,No,Used to derive NPR.
+PT,Prothrombin time,MICE source,numeric,s,-,raw,-,No,Used to derive INR.
+HB,Hemoglobin,Predictor / MICE source,numeric,g/L,-,raw,-,Yes,Final model predictor.
+APTT,Activated partial thromboplastin time,Predictor / MICE source,numeric,s,-,raw,-,Yes,Final model predictor.
+LDH,Lactate dehydrogenase,Predictor / MICE source,numeric,U/L,-,raw,-,Yes,Final model predictor.
+GLU,Glucose,MICE source,numeric,mmol/L,-,raw,-,No,Used to derive TyG.
+TG,Triglycerides,MICE source,numeric,mmol/L,-,raw,-,No,Used to derive TyG.
+AG_ratio,Albumin-to-globulin ratio,Final model predictor,numeric,ratio,-,derived,ALB / (TP - ALB),No,Calculated after each completed imputation; do not impute directly.
+eGFR,Estimated glomerular filtration rate,Final model predictor,numeric,mL/min/1.73 m^2,-,derived,"141*min((CR/88.4)/kappa,1)^alpha*max((CR/88.4)/kappa,1)^(-1.209)*0.993^Age*sex_coefficient*race_coefficient",No,"Female: kappa=0.7, alpha=-0.329, coefficient=1.018; male: kappa=0.9, alpha=-0.411, coefficient=1.0; race coefficient=1.0."
+PAR,Platelet-to-albumin ratio,Final model predictor,numeric,ratio,-,derived,PLT / ALB,No,Calculated after each completed imputation; do not impute directly.
+NPR,Neutrophil-to-platelet ratio,Final model predictor,numeric,ratio,-,derived,NE_C / PLT,No,Calculated after each completed imputation; do not impute directly.
+INR,International normalized ratio,Final model predictor,numeric,dimensionless,-,derived,(PT / 13.1)^1.31,No,Calculated after each completed imputation; do not impute directly.
+TyG,Triglyceride-glucose index,Final model predictor,numeric,index,-,derived,log(1594.26 * TG * GLU / 2),No,Natural logarithm as implemented in the analysis code; calculated after each completed imputation.

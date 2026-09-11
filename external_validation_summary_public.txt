@@ -1,0 +1,38 @@
+EXTERNAL VALIDATION SUMMARY
+===========================
+
+External validation cohort: N = 584
+Stage III-IV / Stage I-II: 422 / 162
+
+Primary validation rule:
+- No external tuning
+- No threshold optimization on the external cohort
+- No recalibration of the stacking model on the external cohort
+- Baseline models were applied using frozen development-cohort fits
+
+Frozen development thresholds:
+- M1 Age alone: 0.615
+- M2 Age + Sex + Smoking: 0.663
+- M3 13 biomarkers only (logistic regression): 0.665
+- M4 Demographics + 13 biomarkers (logistic regression): 0.655
+- M5 SVM + XGBoost stacking: 0.652
+
+Performance uncertainty:
+- Sensitivity/specificity: exact Clopper-Pearson 95% confidence intervals
+- Brier score / calibration intercept / calibration slope: nonparametric percentile bootstrap
+
+External AUC (95% CI):
+- M1 Age alone: 0.744 (0.697-0.792)
+- M2 Age + Sex + Smoking: 0.745 (0.700-0.790)
+- M3 13 biomarkers only: 0.714 (0.667-0.760)
+- M4 Demographics + 13 biomarkers: 0.763 (0.718-0.808)
+- M5 SVM + XGBoost stacking: 0.774 (0.730-0.818)
+
+External sensitivity (95% CI):
+- M1 Age alone: 0.578 (0.529-0.626)
+- M2 Age + Sex + Smoking: 0.533 (0.484-0.582)
+- M3 13 biomarkers only: 0.581 (0.532-0.628)
+- M4 Demographics + 13 biomarkers: 0.573 (0.525-0.621)
+- M5 SVM + XGBoost stacking: 0.647 (0.599-0.693)
+
+This file contains aggregate results only and no patient-level predictions or identifiers.
