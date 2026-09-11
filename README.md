@@ -21,7 +21,6 @@ This repository contains code and supporting metadata for the final model-develo
 - `session_info_public.txt` — public software/package-version information with system-specific details removed.
 - `external_validation_summary_public.txt` — aggregate external-validation summary.
 - `baseline_model_summary_public.xlsx` — aggregate-only baseline-model results; patient-level OOF/fold sheets removed.
-- `UPLOAD_CHECKLIST.md` — public-release safety checklist.
 
 ## Data availability and privacy
 
