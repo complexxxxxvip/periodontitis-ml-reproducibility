@@ -48,7 +48,7 @@ project/
   session_info_public.txt
   external_validation_summary_public.txt
   baseline_model_summary_public.xlsx
-  UPLOAD_CHECKLIST.md
+
 
   private_data/          # not included in the public repository
   outputs/               # generated locally
