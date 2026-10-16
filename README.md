@@ -105,9 +105,3 @@ The supplied final-development script refits and evaluates the **prespecified fi
 The earlier model-specification stage described in the manuscript — including screening of the initial 70 candidate variables, comparison of 12 individual algorithms, and selection among 57 stacking architectures — is not recreated by these five final-analysis scripts unless the corresponding earlier model-selection scripts are also deposited.
 
 If those earlier scripts are available, adding them would provide the strongest response to a request for the **full modelling code**.
-
-## Citation
-
-Repository URL: `[ADD PUBLIC REPOSITORY URL]`
-
-Article DOI / citation: `[ADD AFTER AVAILABLE]`
